@@ -8,44 +8,31 @@ const pokemonSelect = document.getElementById('pokemon-select');
 const botonInfo = document.getElementById('get-pokemon');
 const imgPokemon = document.getElementById('img--pokemon');
 
-
-function mostrarPokemon() {
-fetch('https://pokeapi.co/api/v2/pokemon')
-.then((response) => {
-    if(!response.ok) {
-        throw new Error(`Error: ${response.status}`)
+botonInfo.addEventListener('click', async () => {
+    const contenedor =document.querySelector('container');
+    while(contenedor.firstChild) {
+        contenedor.removeChild(contenedor.firstChild);
     }
-    return response.json();
-    })
-.then(data => {
-    pokemonSelect.innerHTML = ""
-    data.forEach(pokemones => { 
-        pokemonSelect.innerHTML +=
-   
-    `<div>
-     <img src=${pokemones.image} alt=${pokemones.name}> 
-     <h3>Name: ${pokemones.name}</h3> 
-     <p>Specie: ${pokemones.species}</p>
-     </div>`
-   });   
-})
-.catch(error => console.error('Error:', error.message)) 
-} 
-mostrarPokemon();
+    const pokesIds = [1, 4, 7];
+    console.log(contenedor); })
+try {
+    const promesas = pokesIds.map(id =>
+fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+    );
+const resp = await Promise.all(promesas);
+const pokemons = await Promise.all(resp.map(response => response.json()));
 
-
-botonInfo.addEventListener('click', () => {
-    mostrarPokemon()
-})
-
-
-
-
-
-   
- 
-  
-
-botonInfo.addEventListener('click', () => {
-    mostrarPokemon()    
-})
+pokemons.forEach(pokemon => {
+    const pokemonDiv= document.createElement('div'); 
+    pokemonDiv.className = 'pokemon';
+    pokemonDiv.innerHTML = `${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
+    ID: ${pokemon.id}
+    Altura: ${pokemon.height} decímetros
+    Peso: ${pokemon.weight} hectogramos
+    ${pokemon.name}
+    `;
+    contenedor.appendChild(pokemonDiv);
+});
+} catch (error) { 
+    console.error('Problema con la peticion:', error); 
+}
