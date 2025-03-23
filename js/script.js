@@ -4,45 +4,48 @@
 // se tendrá que mostrar la información en pantalla del Pokémon, incluyendo su nombre, 
 // imagen, tipo, altura y peso.
 
-const pokemonSelect = `document.getElementById('pokemon-select').value`;
+const pokemonSelect = document.getElementById('pokemon-select');
 const botonInfo = document.getElementById('get-pokemon');
+const imgPokemon = document.getElementById('img--pokemon');
 
 
-
-function mostrarCategoriaPoke() {
-fetch('https://pokeapi.co')
+function mostrarPokemon() {
+fetch('https://pokeapi.co/api/v2/pokemon')
 .then((response) => {
     if(!response.ok) {
         throw new Error(`Error: ${response.status}`)
     }
     return response.json();
-    
-})
-
+    })
 .then(data => {
-    pokemonSelect.innerHTML = data.value;
-})
-console.log(data);
-}
-    
-
+    pokemonSelect.innerHTML = ""
+    data.forEach(pokemones => { 
+        pokemonSelect.innerHTML +=
    
-   /* data.value.forEach(poke => {
-   
-            `<div>
-             <img src=${poke.image} alt=${personaje.name}> 
-             <h3>Name: ${poke.name}</h3> 
-             <p>Specie: ${poke.species}</p>
-             </div>`
-           });   
-
+    `<div>
+     <img src=${pokemones.image} alt=${pokemones.name}> 
+     <h3>Name: ${pokemones.name}</h3> 
+     <p>Specie: ${pokemones.species}</p>
+     </div>`
+   });   
 })
-.catch(error => console.error('Error:', error.message))
-}
+.catch(error => console.error('Error:', error.message)) 
+} 
+mostrarPokemon();
 
-mostrarCategoriaPoke()    
 
 botonInfo.addEventListener('click', () => {
-    mostrarCategoriaPoke()    
+    mostrarPokemon()
 })
-*/
+
+
+
+
+
+   
+ 
+  
+
+botonInfo.addEventListener('click', () => {
+    mostrarPokemon()    
+})

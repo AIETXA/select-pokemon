@@ -1,1 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    border: 3px solid red;
+    height: 100vh;
+}
+
+body {
+    min-height: 100%;
+    border: 3px solid violet ;
+    background-image: url("https://images.pexels.com/photos/29754763/pexels-photo-29754763/free-photo-of-hermosas-luces-bokeh-sobre-un-arbol-de-navidad-borroso.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.container {
+    border: 3px solid white;
+    width: 90%;
+    margin: 0 auto;
+    max-width: 360px;
+    margin-top: 50px;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+h1 {
+    font-size: xx-large;
+    font-weight: bolder;
+    color: yellow;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    
+
+}
+ .pokemon-form {
+    text-align: center;
+    padding-right: 5px;
+    padding-left: 5px;
+    padding-top: 8px;
+
+ }
+    
+
+.img--pokemon {
+    width: 100%;
+    height: 280px;
+    text-align: center;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    
+   
+}
 
